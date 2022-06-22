@@ -2,57 +2,50 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private BaseWeapon[] _weapons;
     private BaseWeapon _previousWeapon;
+    private UserControl _userControl;
     public static int WeaponSelected { get; private set; } = 0;
 
-
-    private void OnMouseUp()
+    private void OnEnable()
     {
-        Debug.Log("MouseUp");
-        _previousWeapon = _weapons[WeaponSelected];
-        WeaponSelected++;
-        WeaponSelected = (int)Mathf.Repeat(WeaponSelected, _weapons.Length);
-        ChangeWeapon();
+        _userControl.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _userControl.Disable();
+    }
+
+    private void Awake()
+    {
+        _userControl = new UserControl();
     }
 
     private void Update()
     {
-        float mouseWheel = Input.GetAxis("Mouse ScrollWheel");
-        if (mouseWheel > 0.1)
+        float mouseScroll = _userControl.PC.MouseWheel.ReadValue<float>();
+        if (mouseScroll != 0f)
         {
-            Debug.Log("MouseUp");
             _previousWeapon = _weapons[WeaponSelected];
-            WeaponSelected++;
-            WeaponSelected = (int)Mathf.Repeat(WeaponSelected, _weapons.Length);
-            ChangeWeapon();
-        }
-        if (mouseWheel < -0.1)
-        {
-            Debug.Log("MouseDown");
-            _previousWeapon = _weapons[WeaponSelected];
-            WeaponSelected--;
+
+            if (mouseScroll < -1f) WeaponSelected--;
+            else if (mouseScroll > 1f) WeaponSelected++;
+
             WeaponSelected = (int)Mathf.Repeat(WeaponSelected, _weapons.Length);
             ChangeWeapon();
         }
     }
 
-    private void OnMouseDown()
+    private void ChangeWeapon(int index = -1)
     {
-        Debug.Log("MouseDown");
-        _previousWeapon = _weapons[WeaponSelected];
-        WeaponSelected--;
-        WeaponSelected = (int)Mathf.Repeat(WeaponSelected, _weapons.Length);
-        ChangeWeapon();
-    }
-
-    private void ChangeWeapon()
-    {
+        if (index < 0) index = WeaponSelected;
         _previousWeapon?.gameObject.SetActive(false);
-        _weapons[WeaponSelected].gameObject.SetActive(true);
+        _weapons[index].gameObject.SetActive(true);
     }
 
 }

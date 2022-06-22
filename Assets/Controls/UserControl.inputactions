@@ -1,0 +1,102 @@
+{
+    "name": "UserControl",
+    "maps": [
+        {
+            "name": "PC",
+            "id": "64eb2e76-543a-46da-8148-cfae27f3bca2",
+            "actions": [
+                {
+                    "name": "MouseWheel",
+                    "type": "Value",
+                    "id": "94e4e5ed-37f4-4873-a4b1-ad02b506ca0f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "60b3a6ab-33c1-46c5-a664-ee4f51c1773b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "32ced4fc-37fa-4f33-b619-dcf74c5dd709",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c5f96a94-04b0-4022-bee0-747172c9313c",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseWheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af2976d2-66a7-4857-9400-5bca71b5cd00",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6c9162f-7ffd-4c11-bc88-0d49ffdae149",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Android",
+            "id": "f2437b1d-32a7-4d7a-943a-c8801dbeeb9a",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "dde0fcaf-f31c-4c7b-84a0-e554d56e6338",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "051f7ef8-e310-4259-a16c-f1b5ed8ee535",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
