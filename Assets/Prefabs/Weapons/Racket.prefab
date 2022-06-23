@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8077323927529164814}
   - component: {fileID: 3683359884182690901}
   - component: {fileID: -7048905403323436520}
+  - component: {fileID: 1530878519111684017}
+  - component: {fileID: 697392545546008061}
   m_Layer: 0
   m_Name: Racket
   m_TagString: Untagged
@@ -98,3 +100,56 @@ MonoBehaviour:
   _type: 1
   _lifeTime: 5
   _speed: 8
+  _damage: 80
+  _randomizeDamage: 0.2
+--- !u!60 &1530878519111684017
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901834859548901028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.13, y: 2.76}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.2625585, y: 0.5797433}
+      - {x: -1.4543773, y: 0.5851798}
+      - {x: -1.4066547, y: -0.53910756}
+      - {x: 1.2785043, y: -0.5647108}
+      - {x: 1.9641067, y: 0.016584588}
+--- !u!50 &697392545546008061
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901834859548901028}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

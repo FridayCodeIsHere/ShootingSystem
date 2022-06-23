@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour, IPooledObject
 {
     [SerializeField] private ManagerPool.ObjectInfo.ObjectType _type;
     [SerializeField] private float _lifeTime;
     [SerializeField] private float _speed;
+    [SerializeField] private int _damage;
+    [SerializeField, Range(0, 0.5f)] private float _randomizeDamage;
+    private Rigidbody2D _rigidbody;
+    private int _multiplierSpeed = 50;
     public ManagerPool.ObjectInfo.ObjectType Type => _type;
 
     #region MonoBehaviour 
@@ -14,8 +19,14 @@ public class Bullet : MonoBehaviour, IPooledObject
     {
         if (_lifeTime < 0f) _lifeTime = 0f;
         if (_speed < 0f) _speed = 0f;
+        if (_damage < 0) _damage = 0;
     }
     #endregion
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     public void OnCreate(Vector3 position, Quaternion rotation)
     {
@@ -33,6 +44,20 @@ public class Bullet : MonoBehaviour, IPooledObject
     private void Update()
     {
         transform.Translate(Vector3.right * Time.deltaTime * _speed);
+        
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out IDemageable damageCollider))
+        {
+            float randomDamage = _randomizeDamage * _damage;
+            int damage = (int)Random.Range(_damage - randomDamage, _damage + randomDamage);
+            damageCollider.ReduceHealth(damage);
+            Destroy(this.gameObject);
+        }
+    }
+
+    
 
 }
