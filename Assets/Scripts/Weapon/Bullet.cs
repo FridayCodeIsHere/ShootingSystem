@@ -5,14 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour, IPooledObject
 {
-    [SerializeField] private ManagerPool.ObjectInfo.ObjectType _type;
     [SerializeField] private float _lifeTime;
     [SerializeField] private float _speed;
     [SerializeField] private int _damage;
     [SerializeField, Range(0, 0.5f)] private float _randomizeDamage;
-    private Rigidbody2D _rigidbody;
-    private int _multiplierSpeed = 50;
-    public ManagerPool.ObjectInfo.ObjectType Type => _type;
+
 
     #region MonoBehaviour 
     private void OnValidate()
@@ -23,10 +20,6 @@ public class Bullet : MonoBehaviour, IPooledObject
     }
     #endregion
 
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
 
     public void OnCreate(Vector3 position, Quaternion rotation)
     {

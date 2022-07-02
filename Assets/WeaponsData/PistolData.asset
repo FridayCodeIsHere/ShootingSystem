@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78130ee745b9fa342a9585dc206c4da5, type: 3}
+  m_Name: PistolData
+  m_EditorClassIdentifier: 
+  _weaponPrefab: {fileID: 8955077150838514185, guid: 11d36877dc3a8a8419b549c0b8b97bf2, type: 3}
+  _duringShoot: 0.6
+  _reloadTime: 1
+  _speedRotation: 5
+  _countBulletsPool: 3
+  _bulletPrefab: {fileID: 2338341301361101949, guid: f7014afacd8b7fb409afa6ea3caf2528, type: 3}
+  _countBullets: 6
+  _weaponImage: {fileID: 698664279297640794, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
+  _fullBullet: {fileID: 8101326686158321518, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
+  _emptyBullet: {fileID: -7706190253212291482, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
+  _lastBullet: {fileID: 853742892412031643, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}

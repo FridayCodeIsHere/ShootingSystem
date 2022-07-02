@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78130ee745b9fa342a9585dc206c4da5, type: 3}
+  m_Name: BazukaData
+  m_EditorClassIdentifier: 
+  _weaponPrefab: {fileID: 4988740591480571804, guid: 42889b497dfed8f4aaad5fd88b279c57, type: 3}
+  _duringShoot: 1.2
+  _reloadTime: 4
+  _speedRotation: 2
+  _countBulletsPool: 2
+  _bulletPrefab: {fileID: 1901834859548901028, guid: 9abff09e5601c9348a87f2d2b06f4940, type: 3}
+  _countBullets: 12
+  _weaponImage: {fileID: 2912464402848211330, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
+  _fullBullet: {fileID: 8101326686158321518, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
+  _emptyBullet: {fileID: -7706190253212291482, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
+  _lastBullet: {fileID: 853742892412031643, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}

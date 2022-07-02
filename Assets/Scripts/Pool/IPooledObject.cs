@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPooledObject
 {
-    ManagerPool.ObjectInfo.ObjectType Type { get; }
+    
 }

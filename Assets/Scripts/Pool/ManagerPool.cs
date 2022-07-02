@@ -1,28 +1,12 @@
-using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ManagerPool : MonoBehaviour
 {
     public static ManagerPool Instance;
-
-    [Serializable] public struct ObjectInfo
-    {
-        public enum ObjectType
-        {
-            bullet,
-            racket
-        }
-        public ObjectType Type;
-        public GameObject Prefab;
-        public int StartCount;
-    }
-
-    [SerializeField] private List<ObjectInfo> _objectsInfo;
-
-    private Dictionary<ObjectInfo.ObjectType, Pool> _pools;
+    private Dictionary<IWeapon, Pool> _pools;
+    private List<WeaponData> _weaponsData;
+    
 
     private void Awake()
     {
@@ -30,48 +14,59 @@ public class ManagerPool : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    public void SetPoolData(BaseWeapon[] weapons)
+    {
+        _weaponsData = new List<WeaponData>();
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            _weaponsData.Add(weapons[i].BaseWeaponData);
+        }
         InitPool();
     }
 
     private void InitPool()
     {
-        _pools = new Dictionary<ObjectInfo.ObjectType, Pool>();
+        _pools = new Dictionary<IWeapon, Pool>();
         GameObject emptyGO = new GameObject();
 
-        foreach(ObjectInfo obj in _objectsInfo)
+        foreach(WeaponData weapon in _weaponsData)
         {
             GameObject container = Instantiate(emptyGO, transform, false);
-            container.name = obj.Type.ToString();
+            container.name = weapon.WeaponPrefab.ToString();
 
-            _pools[obj.Type] = new Pool(container.transform);
+            IWeapon currentWeapon = weapon.WeaponPrefab.GetComponent<IWeapon>();
+            _pools[currentWeapon] = new Pool(container.transform);
 
-            for (int i = 0; i < obj.StartCount; i++)
+            for (int i = 0; i < weapon.CountBulletsInPool; i++)
             {
-                GameObject go = InstantiateObject(obj.Type, container.transform);
-                _pools[obj.Type].Objects.Enqueue(go);
+                GameObject go = InstantiateObject(weapon, container.transform);
+                _pools[currentWeapon].Objects.Enqueue(go);
             }
         }
 
         Destroy(emptyGO);
     }
 
-    private GameObject InstantiateObject(ObjectInfo.ObjectType type, Transform parent)
+    private GameObject InstantiateObject(WeaponData weapon, Transform parent)
     {
-        GameObject go = Instantiate(_objectsInfo.Find(x => x.Type == type).Prefab, parent);
+        GameObject go = Instantiate(weapon.BulletPrefab, parent);
         go.SetActive(false);
         return go;
     }
 
-    public GameObject GetObject(ObjectInfo.ObjectType type)
+    public GameObject GetObject(WeaponData weaponData)
     {
         GameObject obj;
-        if (_pools[type].Objects.Count > 0)
+        IWeapon weapon = weaponData.WeaponPrefab.GetComponent<IWeapon>();
+        if (_pools[weapon].Objects.Count > 0)
         {
-            obj = _pools[type].Objects.Dequeue();
+            obj = _pools[weapon].Objects.Dequeue();
         }
         else
         {
-            obj = InstantiateObject(type, _pools[type].Container);
+            obj = InstantiateObject(weaponData, _pools[weapon].Container);
         }
         obj.SetActive(true);
         return obj;
@@ -79,10 +74,20 @@ public class ManagerPool : MonoBehaviour
 
     public void DestroyObject(GameObject obj)
     {
-        if (obj.TryGetComponent(out IPooledObject poolObject))
+        if (obj.GetComponent<IPooledObject>() != null)
         {
-            _pools[poolObject.Type].Objects.Enqueue(obj);
-            obj.SetActive(false);
+            string objParentName = obj.transform.parent.name;
+            foreach (var pool in _pools)
+            {
+                Debug.Log($"{objParentName} == {pool.Value.Container.name}");
+                if (objParentName == pool.Value.Container.name)
+                {
+                    pool.Value.Objects.Enqueue(obj);
+                    obj.SetActive(false);
+                    return;
+                }
+            }
+            
         }
     }
 }
