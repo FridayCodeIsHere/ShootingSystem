@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BazukaData
   m_EditorClassIdentifier: 
   _weaponPrefab: {fileID: 4988740591480571804, guid: 42889b497dfed8f4aaad5fd88b279c57, type: 3}
-  _duringShoot: 1.2
+  _duringShoot: 0.8
   _reloadTime: 4
   _speedRotation: 2
   _countBulletsPool: 2

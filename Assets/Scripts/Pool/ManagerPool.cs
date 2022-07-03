@@ -79,7 +79,6 @@ public class ManagerPool : MonoBehaviour
             string objParentName = obj.transform.parent.name;
             foreach (var pool in _pools)
             {
-                Debug.Log($"{objParentName} == {pool.Value.Container.name}");
                 if (objParentName == pool.Value.Container.name)
                 {
                     pool.Value.Objects.Enqueue(obj);

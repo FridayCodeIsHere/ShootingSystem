@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public class BaseWeapon : MonoBehaviour, IWeapon
@@ -98,7 +96,6 @@ public class BaseWeapon : MonoBehaviour, IWeapon
         {
             CountBullets--;
             WeaponGUIPanel.Instance.RenderData(_weaponData, CountBullets);
-            Debug.Log($"ShootBase: {CanShoot}");
             CanShoot = false;
             
         }

@@ -1,10 +1,13 @@
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Goal : MonoBehaviour, IDemageable
 {
     [SerializeField] private int _health;
     [SerializeField] private TextMeshProUGUI _healthText;
+    private int _currentHealth;
+    public Vector2 ShapeSize { get; private set; }
 
     #region MonoBehaviour
     private void OnValidate()
@@ -16,17 +19,24 @@ public class Goal : MonoBehaviour, IDemageable
     }
     #endregion
 
+    private void Awake()
+    {
+        ShapeSize = GetComponent<SpriteRenderer>().size;
+    }
+
     private void Start()
     {
+        _currentHealth = _health;
         RenderHealth();
+        
     }
 
     public void ReduceHealth(int value)
     {
-        int damage = value > _health ? _health : value;
-        _health -= damage;
+        int damage = value > _currentHealth ? _currentHealth : value;
+        _currentHealth -= damage;
         RenderHealth();
-        if (_health <= 0f)
+        if (_currentHealth <= 0f)
         {
             Invoke(nameof(Dead), 0.2f);
         }
@@ -37,7 +47,7 @@ public class Goal : MonoBehaviour, IDemageable
     {
         if (_healthText != null)
         {
-            _healthText.text = _health.ToString();
+            _healthText.text = _currentHealth.ToString();
         }
         else
         {
@@ -47,6 +57,11 @@ public class Goal : MonoBehaviour, IDemageable
 
     public void Dead()
     {
-        Destroy(this.gameObject);
+        if (transform.root.TryGetComponent(out GoalManager goalManager))
+        {
+            goalManager.SetGoalPosition();
+            _currentHealth = _health;
+            RenderHealth();
+        }
     }
 }

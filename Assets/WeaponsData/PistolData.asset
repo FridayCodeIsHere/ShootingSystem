@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PistolData
   m_EditorClassIdentifier: 
   _weaponPrefab: {fileID: 8955077150838514185, guid: 11d36877dc3a8a8419b549c0b8b97bf2, type: 3}
-  _duringShoot: 0.6
+  _duringShoot: 0.3
   _reloadTime: 1
   _speedRotation: 5
   _countBulletsPool: 3
   _bulletPrefab: {fileID: 2338341301361101949, guid: f7014afacd8b7fb409afa6ea3caf2528, type: 3}
-  _countBullets: 6
+  _countBullets: 12
   _weaponImage: {fileID: 698664279297640794, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
   _fullBullet: {fileID: 8101326686158321518, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}
   _emptyBullet: {fileID: -7706190253212291482, guid: d7bb530c254efee449fdee3e2abadc6b, type: 3}

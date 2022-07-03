@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShotgunData
   m_EditorClassIdentifier: 
   _weaponPrefab: {fileID: 2885330267389898941, guid: d2644db1571f21042944a514edffa425, type: 3}
-  _duringShoot: 0.8
+  _duringShoot: 0.6
   _reloadTime: 3
   _speedRotation: 2
   _countBulletsPool: 4
